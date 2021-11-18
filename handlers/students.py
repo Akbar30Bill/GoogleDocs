@@ -19,7 +19,7 @@ def handle_students(worksheet):
 def get_student_data():
   students_grades = nab_dict()
   students = []
-  for worksheet in get_worksheet(sheets_url, 'robotic-totem-278911-8c98d424f570.json'):
+  for worksheet in get_worksheet(sheets_url):
     if worksheet.title == 'لیست دانش‌آموزان':
       students = handle_students(worksheet)
     else:
