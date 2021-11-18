@@ -22,7 +22,5 @@ def request_handler(ssn):
 
 @app.route('/<ssn>')
 def get_grades(ssn):
-  print(ssn)
   return request_handler(ssn)
-
-app.run()
+  
