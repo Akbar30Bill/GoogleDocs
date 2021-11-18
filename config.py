@@ -15,4 +15,5 @@ def create_keyfile_dict():
         "auth_provider_x509_cert_url": os.environ.get("SHEET_AUTH_PROVIDER_X509_CERT_URL"),
         "client_x509_cert_url": os.environ.get("SHEET_CLIENT_X509_CERT_URL")
     }
+    print(variables_keys)
     return variables_keys
