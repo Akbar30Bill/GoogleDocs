@@ -1,6 +1,5 @@
 from nab_dict import nab_dict
 
-
 def handle_course(worksheet):
   students_grades = nab_dict()
   title = worksheet.title
