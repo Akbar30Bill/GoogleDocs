@@ -1,12 +1,12 @@
-from config import create_keyfile_dict
+from config import google_config_file
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 def get_worksheet(sheets_url):
-  import gspread
-  from oauth2client.service_account import ServiceAccountCredentials
 
   scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 
-  credentials = ServiceAccountCredentials.from_json_keyfile_dict(create_keyfile_dict(), scope)
+  credentials = ServiceAccountCredentials.from_json_keyfile_name(google_config_file, scope)
 
   sheets_url = 'https://docs.google.com/spreadsheets/d/13EcQlxTGkirllkSx60CbZbjCNDjgQEkWi50LZVftBcM/'
 

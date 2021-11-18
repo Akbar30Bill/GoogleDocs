@@ -3,8 +3,14 @@ from nab_dict import nab_dict
 from providers.worksheet import get_worksheet
 from datetime import datetime, timedelta
 from flask import Flask
+from config import google_config_file
+import os
 
 app = Flask(__name__)
+
+with open(google_config_file, 'w') as f:
+  f.write(os.environ.get('JSON_CONF_FILE'))
+  f.close()
 
 students_grades = nab_dict()
 students = []
