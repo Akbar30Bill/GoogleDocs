@@ -1,16 +1,18 @@
-# connect to google docs and read and write data
+import sys
+from handlers.course import handle_course
+from handlers.students import handle_students
+from nab_dict import nab_dict
+from providers.worksheet import get_worksheet
 
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+sheets_url = 'https://docs.google.com/spreadsheets/d/13EcQlxTGkirllkSx60CbZbjCNDjgQEkWi50LZVftBcM/'
 
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+students_grades = nab_dict()
+students = []
 
-credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+for worksheet in get_worksheet(sheets_url, sys.argv[1]):
+  if worksheet.title == 'لیست دانش‌آموزان':
+    students = handle_students(worksheet)
+  else:
+    students_grades.merge(handle_course(worksheet))
 
-gc = gspread.authorize(credentials)
-
-wks = gc.open("test").sheet1
-
-wks.update_acell('A1', 'hello')
-
-print(wks.acell('A1').value)
+print(students)
