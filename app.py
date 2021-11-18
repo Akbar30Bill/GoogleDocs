@@ -20,7 +20,10 @@ def request_handler(ssn):
       return str(students_grades[(student['name'], student['lastname'], student['class_code'], )])
   return 'No Students Found'
 
+@app.route('/')
+def main():
+  return '<h1>The Great Grade Reporter</h1>'
+
 @app.route('/<ssn>')
 def get_grades(ssn):
   return request_handler(ssn)
-  
